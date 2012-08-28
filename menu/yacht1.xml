@@ -1,0 +1,33 @@
+
+  <menu  name="yacht" title="Main yacht menu">
+   <item title="Navigation">
+        <item title="Position"/>
+        <item title="Speed over ground"/>
+        <item title="Heading"/>
+        <item title="Anchor Watch" action="'Anchor watch is '+ persist.load('anchortalk').status()">
+              <item action="'Anchor watch is now '+ persist.save(persist.load('anchortalk').toggle(),'anchortalk').status()"/>
+        </item>
+
+    </item>
+    <item title="Weather">
+        <item title="Windspeed" />
+        <item title="Barometer" action="persist.load('baro').baro_text()"/>
+        <item title="Talker Status" action="'Barometer talk is '+ persist.load('barotalk').status()">
+              <item action="'Barometer talk is now '+ persist.save(persist.load('barotalk').toggle(),'barotalk').status()"/>
+        </item>
+    </item>
+    <item title="Date and Time">
+        <item title="Time"
+        action="'Time is ' + str(int(time.strftime('%I'))) + ' ' + time.strftime('%M %p')"/>
+        <item title="Date" action="'The Date is ' + time.strftime('%A %d of %B')" />
+        <item title="Ships Bell"/>
+    </item>
+    <item title="Tide">
+        <!-- get data from tide prediction program for nearest location --> 
+       <item title="High Water"> </item>
+       <item title="Low Water"> </item>
+       <item title="Range"/>
+       <item title="Location"/>
+    </item>
+       
+</menu>
