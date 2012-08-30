@@ -4,7 +4,7 @@ import time
 
 
 class Weather :
-    """ cut down version just                                                                                                                                to get the baro """ 
+    """ cut down version just for the barometer mock """
                                        
     def __init__(self,id,url) :
         self.url = url
@@ -17,12 +17,7 @@ class Weather :
             report = page.readline()
             data = report.split(" ")
             self.baro = float(data[6])
-            self.ts = time.strftime('%H:%M:%S')
+            self.ts = time.time()
             self.updated = True
-        except :                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   self.updated = False
-    
-  
-
-
-                                    
+        except Exception :
+            self.updated = False

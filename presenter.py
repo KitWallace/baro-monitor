@@ -17,7 +17,7 @@ def read_key() :
             key = "down"
         elif (code==54 or code==67) :
             key = "right"
-        elif (code==49 or code==65) :
+        elif (code==49 or code==65 or code==69) :
             key = "up"
         else :
             key = None

@@ -1,25 +1,28 @@
-
   <menu  name="yacht" title="Main yacht menu">
    <item title="Navigation">
         <item title="Position"/>
         <item title="Speed over ground"/>
         <item title="Heading"/>
-        <item title="Anchor Watch" action="'Anchor watch is '+ persist.load('anchortalk').status()">
-              <item action="'Anchor watch is now '+ persist.save(persist.load('anchortalk').toggle(),'anchortalk').status()"/>
+        <item title="Anchor Watch" action="'Anchor watch is '+ get('anchortalk').status()">
+              <item action="'Anchor watch is now '+ get('anchortalk').toggle().put().status()"/>
         </item>
 
     </item>
     <item title="Weather">
         <item title="Windspeed" />
-        <item title="Barometer" action="persist.load('baro').baro_text()"/>
-        <item title="Talker Status" action="'Barometer talk is '+ persist.load('barotalk').status()">
-              <item action="'Barometer talk is now '+ persist.save(persist.load('barotalk').toggle(),'barotalk').status()"/>
+        <item title="Barometer" action="get('baro').talk_text()"/>
+        <item title="Talker Status" action="'Barometer talk is '+ get('barotalk').status()">
+              <item action="'Barometer talk is now '+ get('barotalk').toggle().put().status()"/>
         </item>
     </item>
     <item title="Date and Time">
         <item title="Time"
         action="'Time is ' + str(int(time.strftime('%I'))) + ' ' + time.strftime('%M %p')"/>
         <item title="Date" action="'The Date is ' + time.strftime('%A %d of %B')" />
+        <item title="Clock" action="'Clock is '+ get('clock').status()">
+              <item action="'Clock is now '+ get('clock').toggle().put().status()"/>
+        </item>
+
         <item title="Ships Bell"/>
     </item>
     <item title="Tide">

@@ -27,22 +27,22 @@ def degree_to_compass_point(deg) :
    return points[dp]
 
 def trend_to_tendancy(trend) :
-    """ trend is the trend over 3 hours """
+    """ trend is the trend over 1 hour """
     
     atrend = abs(trend)
 
-    if atrend <= 0.1 :
+    if atrend <= 0.033 :
       tendancy = "steady"
-    elif atrend <= 1.5 :
+    elif atrend <= 0.5 :
       tendancy = "slowly"
-    elif atrend <= 3.5 :
+    elif atrend <= 1.1 :
       tendancy = ""
-    elif atrend <= 6.0 :
+    elif atrend <= 2.0 :
       tendancy = "quickly"
-    elif atrend > 6 :
+    elif atrend > 2 :
       tendancy = "very rapidly" 
 
-    if atrend <= 0.1 :
+    if atrend <= 0.033 :
       pass
     elif trend > 0 : 
       tendancy = "rising " + tendancy
