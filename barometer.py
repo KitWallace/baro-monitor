@@ -5,7 +5,7 @@ import sys
 from persistant import *
 from history import *
 from weather import *
-from cbuffer import *
+from cyclic_sequence import *
 
 import conv
 
@@ -38,7 +38,7 @@ class Barometer(Persistant) :
         self.interval_secs = interval_secs
         self.smooth_secs = smooth_secs
         self.trend_secs = trend_secs 
-        self.history = CBuffer(int(trend_secs / smooth_secs))
+        self.history = Cyclic_Sequence(int(trend_secs / smooth_secs))
         self.trend = 0.0
         self.tendancy = ""
     
@@ -50,8 +50,8 @@ class Barometer(Persistant) :
             self.put()
  
     def updateTrend(self) :
-        if self.history.value(-1) is not None :
-            self.trend = self.history.value(0) - self.history.value(-1)
+        if self.history.get(-1) is not None :
+            self.trend = self.history.get(0) - self.history.get(-1)
             self.tendancy = conv.trend_to_tendancy(self.trend)
             
     def talk_text(self) :

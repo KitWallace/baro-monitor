@@ -1,6 +1,6 @@
 import time
-class CBuffer(object) :
-    """ handle a circular sequence values
+class Cyclic_Sequence(object) :
+    """ handle a circular sequence of objects
 
     """
     
@@ -8,11 +8,6 @@ class CBuffer(object) :
         self.limit = limit
         self.log = [None for i in range(limit)]
         self.i = self.limit - 1
-
-    def load(self,file) :
-        for line in file :
-            (value,ts) = line.split(",")
-            self.log.append((float(value),float(ts)))
       
     def add(self,value) :
         if value is None :
@@ -21,7 +16,7 @@ class CBuffer(object) :
             self.i = (self.i + 1) % self.limit
             self.log[self.i] = value
 
-    def value(self,age) :
+    def get(self,age) :
         index = (self.i - age) % self.limit 
         return self.log[index]
 
