@@ -10,7 +10,7 @@ Switch("clock").put()
 while True :
    sw = get("clock")
    if sw.on :
-      message = "The time on Aremiti is " + \
+      message = "The Raspberry Pi time is " + \
           speak.escape_XML(speak.ssml_break(500)) + \
           str(int(time.strftime('%I'))) + \
           ' ' + time.strftime('%M %p')
