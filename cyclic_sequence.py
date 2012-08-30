@@ -6,20 +6,20 @@ class Cyclic_Sequence(object) :
     
     def __init__(self,limit) :
         self.limit = limit
-        self.log = [None for i in range(limit)]
-        self.i = self.limit - 1
+        self.seq = [None for i in range(limit)]
+        self.current = self.limit - 1
       
-    def add(self,value) :
-        if value is None :
+    def add(self,obj) :
+        if obj is None :
             pass
         else :
-            self.i = (self.i + 1) % self.limit
-            self.log[self.i] = value
+            self.current = (self.current + 1) % self.limit
+            self.seq[self.current] = obj
 
-    def get(self,age) :
-        index = (self.i - age) % self.limit 
-        return self.log[index]
+    def get(self,i) :
+        index = (self.current - i ) % self.limit 
+        return self.seq[index]
 
     def pr(self) :
         for i in range(self.limit) :
-            print i,self.value(i)
+            print i,self.get(i)
