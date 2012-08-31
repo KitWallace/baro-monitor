@@ -5,7 +5,7 @@ import sys
 from persistant import *
 from history import *
 from weather import *
-from cyclic_sequence import *
+from moving_sequence import *
 
 import conv
 
@@ -38,24 +38,28 @@ class Barometer(Persistant) :
         self.interval_secs = interval_secs
         self.smooth_secs = smooth_secs
         self.trend_secs = trend_secs 
-        self.history = Cyclic_Sequence(int(trend_secs / smooth_secs))
-        self.trend = 0.0
-        self.tendancy = ""
-    
+        self.trend_length = int(trend_secs /smooth_secs)
+        self.history = Moving_Sequence(self.trend_length)
+        self.trend = 0
+        self.tendency = ""
+        self.forecast = ""
+
     def monitor(self) :
         reader = baroSmoother(self.interval_secs,self.smooth_secs)
         for self.baro in reader :
             self.history.add(self.baro)
             self.updateTrend()
             self.put()
+            print time.strftime("%a %H:%M",time.localtime(self.ts)),self.baro,self.trend,self.tendency,self.forecast
  
     def updateTrend(self) :
         if self.history.get(-1) is not None :
             self.trend = self.history.get(0) - self.history.get(-1)
-            self.tendancy = conv.trend_to_tendancy(self.trend)
-            
+            self.tendency = conv.trend_to_tendency(self.trend)
+            self.forecast = conv.forecast1(self.baro,self.trend)
+
     def talk_text(self) :
-        return "Barometer is " + str(int(round(self.baro,0))) +  " " + self.tendancy
+        return "Barometer is " + str(int(round(self.baro,0))) +  " " + self.tendency + " " + self.forecast
         
     def __getstate__(self) :
         odict = self.__dict__.copy()

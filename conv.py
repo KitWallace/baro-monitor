@@ -1,5 +1,42 @@
 points = ["N","NNE","NE","ENE","E","ESE","SE" ,"SSE" ,"S", "SSW","SW","WSW","W", "WNW","NW","NNW","N"]
 
+tendency_table = \
+  (   
+    (6.05,"rising very rapidly"),
+    (3.55 , "rising quickly"),
+    (1.55 , "rising slowly"),
+    (0.1 , "rising"),
+    (-0.1 , "steady"),
+    (-1.55 , "falling"),
+    (-3.55, "falling slowly"),
+    (-6.05 , "falling quickly"),
+    (-99 , "falling very rapidly")
+  )
+
+forecast1_table = \
+  (
+    (1022, ( (-0.1 , "Continued fair"),
+             (-1.55 , "Fair") ,
+             (-3.55 , "Cloudy, Warmer")
+           )
+    ),
+    (1009, ( (-0.1 , "Continued fair"), 
+             (-1.55 , "Little change"), 
+             (-3.55 , "Cloudy, Warmer")
+           ) 
+    ),
+    (980 , ( (-0.1 , "Clearing, cooler"),
+             (-1.55 , "Rain"), 
+             (-3.55 , "Storm")
+           ) 
+    )
+)
+
+def find(table,myval) :
+    for threshold,value in table :
+        if myval >= threshold :
+           return value
+
 def deg_to_dms(dd,latlong) :
 
    if (latlong == "lat"):
@@ -26,30 +63,13 @@ def degree_to_compass_point(deg) :
    dp = int(dp // 22.5)
    return points[dp]
 
-def trend_to_tendancy(trend) :
-    """ trend is the trend over 1 hour """
-    
-    atrend = abs(trend)
+def trend_to_tendency(trend) :
+    if trend is not None :
+        return find(tendency_table,trend)
 
-    if atrend <= 0.033 :
-      tendancy = "steady"
-    elif atrend <= 0.5 :
-      tendancy = "slowly"
-    elif atrend <= 1.1 :
-      tendancy = ""
-    elif atrend <= 2.0 :
-      tendancy = "quickly"
-    elif atrend > 2 :
-      tendancy = "very rapidly" 
-
-    if atrend <= 0.033 :
-      pass
-    elif trend > 0 : 
-      tendancy = "rising " + tendancy
-    else :
-      tendancy = "falling " + tendancy
-
-    return tendancy
+def forecast1 (baro, trend) :
+    if baro is not None and trend is not None :
+        return find(find(forecast1_table,baro),trend)
 
 
 
