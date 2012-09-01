@@ -3,7 +3,6 @@
 import time
 import sys
 from persistant import *
-from history import *
 from weather import *
 from moving_sequence import *
 
