@@ -59,7 +59,7 @@ class Barometer(Persistant) :
             self.forecast = conv.forecast1(self.baro,self.trend)
 
     def talk_text(self) :
-        return "Barometer is " + str(int(round(self.baro,0))) +  " " + self.tendency + " " + self.forecast
+        return "Barometer is " + str(int(round(self.baro,0))) +  ", " + self.tendency + ". Forecast " + self.forecast
         
     def __getstate__(self) :
         odict = self.__dict__.copy()
