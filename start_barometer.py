@@ -2,7 +2,7 @@
 
 from barometer import *
          
-baro = Barometer("baro",60,300,3600)
+baro = Barometer("baro",60,300,10800)
 baro.monitor()
 
     
