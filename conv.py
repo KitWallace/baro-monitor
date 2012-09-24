@@ -18,17 +18,17 @@ forecast1_table = \
   (
     (1022, ( (-0.1 , "Continued fair"),
              (-1.55 , "Fair") ,
-             (-3.55 , "Cloudy, Warmer")
+             (-99 , "Cloudy, Warmer")
            )
     ),
     (1009, ( (-0.1 , "Same as present"), 
              (-1.55 , "Little change"), 
-             (-3.55 , "Precipitation likely")
+             (-99 , "Precipitation likely")
            ) 
     ),
-    (980 , ( (-0.1 , "Clearing, cooler"),
+    (0, ( (-0.1 , "Clearing, cooler"),
              (-1.55 , "Precipitation"), 
-             (-3.55 , "Storm")
+             (-99 , "Storm")
            ) 
     )
 )
